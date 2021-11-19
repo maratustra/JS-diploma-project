@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 `use strict`;
 
+import Modal from './modules/modal';
 import SliderService from './modules/slider_service';
 import Timer from './modules/timer';
 import Scroll from './modules/scroll';
@@ -9,14 +10,26 @@ import sendForm from './modules/send_form';
 import zoomModal from './modules/zoom_modal';
 import calc from './modules/calculator';
 import reviews from './modules/reviews';
-import modal from './modules/modal';
 
-modal();
+
+
 validation();
 zoomModal();
 sendForm();
 calc();
 reviews();
+
+const modalOpts = {
+  orderCallBtnClass: 'btn-block.fancyboxModal',
+  orderCallMeasurerBtnsClass: 'btn-sm.fancyboxModal',
+  modalWindowClass: 'header-modal--opened',
+  modalMeasurerClass: 'services-modal--opened',
+  closeModalBtnsAttr: '[title="Close"]',
+  overlayCLass: 'header-modal--opened'
+};
+
+const modal = new Modal(modalOpts);
+
 
 const sliderForServicesOpts = {
   sliderItemsClass: 'service-slide',
