@@ -1,14 +1,15 @@
 /*jshint esversion: 6 */
 `use strict`;
 
-import modal from './modules/modal';
 import SliderService from './modules/slider_service';
 import Timer from './modules/timer';
+import Scroll from './modules/scroll';
 import validation from './modules/validation_forms';
 import sendForm from './modules/send_form';
 import zoomModal from './modules/zoom_modal';
 import calc from './modules/calculator';
 import reviews from './modules/reviews';
+import modal from './modules/modal';
 
 modal();
 validation();
@@ -27,6 +28,7 @@ const sliderForServicesOpts = {
 
 const sliderForServices = new SliderService(sliderForServicesOpts);
 
+
 const sliderForBenefitsOpts = {
   sliderItemsClass: 'benefits__item',
   leftArrowClass: 'benefits__arrow--left',
@@ -37,6 +39,7 @@ const sliderForBenefitsOpts = {
 
 const sliderForBenefits = new SliderService(sliderForBenefitsOpts);
 
+
 const timerOpts = {
   deadline: '31 december 2021',
   timerDaysQuerySelector: 'div.count_1 span',
@@ -46,3 +49,11 @@ const timerOpts = {
 };
 
 const timer = new Timer(timerOpts);
+
+
+const scrollOpts = {
+  scrollBtnClass: 'smooth-scroll',
+  blockID: 'header'
+};
+
+const scroller = new Scroll(scrollOpts);
