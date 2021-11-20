@@ -148,11 +148,11 @@
 				<div class="heading-image"><i class="calc-ico"></i></div>
 				<h2 class="heading white">Калькулятор стоимости</h2>
 			</div>
-			<div class="row">
+			<div class="row calc-row">
 				<div class="col-md-12 col-md-6">
 					<div class="form-group">
-						<label for="calc-type" class="text-warning">Балкон/Лоджия</label>
-						<select name="calc-type" class="form-control form-control-sm" id="calc-type">
+						<label for="calc-type" class="text-warning">Балкон/Лоджия *</label>
+						<select name="calc-type" class="form-control form-control-sm" id="calc-type" required>
 							<option>--</option>
 							<option value="1.2">Балкон</option>
 							<option value="1.3">Лоджия</option>
@@ -173,8 +173,9 @@
 			<div class="row">
 				<div class="col-md-12 col-md-6">
 					<div class="form-group">
-						<label for="calc-input" class="text-warning">Площадь (м&sup2;)</label>
-						<input name="calc-input" type="number" class="form-control" id="calc-input" placeholder="Площадь (м&sup2;)">
+						<label for="calc-input" class="text-warning">Площадь (м&sup2;) *</label>
+						<input name="calc-input" type="number" class="form-control" id="calc-input" placeholder="Площадь (м&sup2;)"
+							required>
 					</div>
 				</div>
 				<div class="col-md-12 col-md-6">

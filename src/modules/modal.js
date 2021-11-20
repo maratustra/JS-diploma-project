@@ -16,8 +16,6 @@ class Modal {
   }
 
   eventListeners() {
-    console.log(this.closeModalWindow);
-    console.log(this.closeModalMeasurer);
     this.orderCallBtn.addEventListener('click', () => {
       this.overlay.style.display = 'block';
       this.modalWindow.style.display = 'block';

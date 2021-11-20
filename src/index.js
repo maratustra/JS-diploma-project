@@ -5,19 +5,18 @@ import Modal from './modules/modal';
 import SliderService from './modules/slider_service';
 import Timer from './modules/timer';
 import Scroll from './modules/scroll';
+import Calculator from './modules/calculator';
 import validation from './modules/validation_forms';
 import sendForm from './modules/send_form';
 import zoomModal from './modules/zoom_modal';
-import calc from './modules/calculator';
 import reviews from './modules/reviews';
-
 
 
 validation();
 zoomModal();
 sendForm();
-calc();
 reviews();
+
 
 const modalOpts = {
   orderCallBtnClass: 'btn-block.fancyboxModal',
@@ -71,3 +70,14 @@ const scrollOpts = {
 };
 
 const scroller = new Scroll(scrollOpts);
+
+
+const calcOpts = {
+  selectorsBlockClass: 'calc-row',
+  calcTypeId: 'calc-type',
+  calcTypeMaterialId: 'calc-type-material',
+  calcSquareId: 'calc-input',
+  calcTotalId: 'calc-total'
+};
+
+const calc = new Calculator(calcOpts);
