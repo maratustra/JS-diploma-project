@@ -16,11 +16,9 @@ class Calculator {
   }
 
   calculate() {
-    if (this.calcTypeOfBalconyValue && this.calcSquareOfBalconyValue) {
-      this.calcTotalPriceValue = this.calcSquareOfBalconyValue * 100 * this.calcTypeOfBalconyValue * this.calcTypeOfMateriaValue;
+    this.calcTotalPriceValue = this.calcSquareOfBalconyValue * 100 * this.calcTypeOfBalconyValue * this.calcTypeOfMateriaValue;
 
-      this.showResult(this.calcTotalPriceValue);
-    }
+    this.showResult(this.calcTotalPriceValue);
   }
 
   showResult(totalPrice) {
@@ -46,7 +44,10 @@ class Calculator {
         case this.calcTypeOfBalcony:
           this.maybeHideError(this.calcTypeOfBalcony);
           if (e.target.value > 0) this.calcTypeOfBalconyValue = +e.target.value;
-          else this.showError(this.calcTypeOfBalcony);
+          else {
+            this.calcTypeOfBalconyValue = 0;
+            this.showError(this.calcTypeOfBalcony);
+          }
 
           break;
 
@@ -58,8 +59,13 @@ class Calculator {
       this.calculate();
     });
 
-    this.calcSquareOfBalcony.addEventListener('input', (e) => {
-      this.calcSquareOfBalconyValue = +e.target.value;
+    this.calcSquareOfBalcony.addEventListener('change', (e) => {
+      this.maybeHideError(this.calcSquareOfBalcony);
+      if (e.target.value > 0) this.calcSquareOfBalconyValue = +e.target.value;
+      else if (e.target.value === '') {
+        this.calcSquareOfBalconyValue = 0;
+        this.showError(this.calcSquareOfBalcony);
+      }
 
       this.calculate();
     });

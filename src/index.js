@@ -6,15 +6,13 @@ import SliderService from './modules/slider_service';
 import Timer from './modules/timer';
 import Scroll from './modules/scroll';
 import Calculator from './modules/calculator';
-import validation from './modules/validation_forms';
-import sendForm from './modules/send_form';
+import Validation from './modules/validation_forms';
+import SendForm from './modules/send_form';
 import zoomModal from './modules/zoom_modal';
 import reviews from './modules/reviews';
 
 
-validation();
 zoomModal();
-sendForm();
 reviews();
 
 
@@ -63,7 +61,6 @@ const timerOpts = {
 
 const timer = new Timer(timerOpts);
 
-
 const scrollOpts = {
   scrollBtnClass: 'smooth-scroll',
   blockID: 'header'
@@ -72,12 +69,36 @@ const scrollOpts = {
 const scroller = new Scroll(scrollOpts);
 
 
-const calcOpts = {
-  selectorsBlockClass: 'calc-row',
-  calcTypeId: 'calc-type',
-  calcTypeMaterialId: 'calc-type-material',
-  calcSquareId: 'calc-input',
-  calcTotalId: 'calc-total'
+if (document.body.classList.contains('balkony')) {
+  const calcOpts = {
+    selectorsBlockClass: 'calc-row',
+    calcTypeId: 'calc-type',
+    calcTypeMaterialId: 'calc-type-material',
+    calcSquareId: 'calc-input',
+    calcTotalId: 'calc-total'
+  };
+
+  const calc = new Calculator(calcOpts);
+}
+
+const validOpts = {
+  formsBlocksTag: 'form',
+  userNameInputAttr: '[name="fio"]',
+  phoneNumberInputAttr: '[name="phone"]'
 };
 
-const calc = new Calculator(calcOpts);
+const validation = new Validation(validOpts);
+
+
+const sendFormOpts = {
+  url: 'https://jsonplaceholder.typicode.com/posts',
+  formsBlocksTag: 'form',
+  calcTotalSum: [
+    {
+      type: 'input',
+      id: 'calc-total',
+    }
+  ],
+};
+
+const sending = new SendForm(sendFormOpts);
