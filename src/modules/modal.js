@@ -3,18 +3,21 @@
 
 class Modal {
 
-  constructor({ orderCallBtnClass, orderCallMeasurerBtnsClass, modalWindowClass, modalMeasurerClass, closeModalBtnsAttr, overlayCLass }) {
+  constructor({ orderCallBtnClass, orderCallMeasurerBtnsClass, modalWindowClass, modalMeasurerClass, closeModalWindowClass, closeModalMeasurerClass, overlayClass }) {
     this.orderCallBtn = document.querySelector(`.${orderCallBtnClass}`);
     this.orderCallMeasurerBtns = document.querySelectorAll(`.${orderCallMeasurerBtnsClass}`);
     this.modalWindow = document.querySelector(`.${modalWindowClass}`);
     this.modalMeasurer = document.querySelector(`.${modalMeasurerClass}`);
-    this.closeModalBtns = document.querySelectorAll(`${closeModalBtnsAttr}`);
-    this.overlay = document.querySelector(`.${overlayCLass}`);
+    this.closeModalWindow = document.querySelector(`.${closeModalWindowClass}`);
+    this.closeModalMeasurer = document.querySelector(`.${closeModalMeasurerClass}`);
+    this.overlay = document.querySelector(`.${overlayClass}`);
 
     this.eventListeners();
   }
 
   eventListeners() {
+    console.log(this.closeModalWindow);
+    console.log(this.closeModalMeasurer);
     this.orderCallBtn.addEventListener('click', () => {
       this.overlay.style.display = 'block';
       this.modalWindow.style.display = 'block';
@@ -27,13 +30,14 @@ class Modal {
       });
     });
 
-    this.closeModalBtns.forEach(closeBtn => {
-      closeBtn.addEventListener('click', (e) => {
-        if (e.target.classList.contains(this.modalWindow)) this.modalWindow.style.display = 'none';
-        else this.modalMeasurer.style.display = 'none';
+    this.closeModalWindow.addEventListener('click', () => {
+      this.modalWindow.style.display = 'none';
+      this.overlay.style.display = 'none';
+    });
 
-        this.overlay.style.display = 'none';
-      });
+    this.closeModalMeasurer.addEventListener('click', () => {
+      this.modalMeasurer.style.display = 'none';
+      this.overlay.style.display = 'none';
     });
   }
 }

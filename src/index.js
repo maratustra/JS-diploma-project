@@ -24,8 +24,9 @@ const modalOpts = {
   orderCallMeasurerBtnsClass: 'btn-sm.fancyboxModal',
   modalWindowClass: 'header-modal--opened',
   modalMeasurerClass: 'services-modal--opened',
-  closeModalBtnsAttr: '[title="Close"]',
-  overlayCLass: 'header-modal--opened'
+  closeModalWindowClass: 'header-modal__close',
+  closeModalMeasurerClass: 'services-modal__close',
+  overlayClass: 'overlay'
 };
 
 const modal = new Modal(modalOpts);
