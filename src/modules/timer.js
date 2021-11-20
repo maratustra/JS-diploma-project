@@ -4,20 +4,20 @@
 class Timer {
 
   constructor({ deadline, timerDaysQuerySelector, timerHoursQuerySelector, timerMinutesQuerySelector, timerSecondsQuerySelector }) {
-    this.timerDaysQuerySelector = document.querySelector(timerDaysQuerySelector);
-    this.timerHoursQuerySelector = document.querySelector(timerHoursQuerySelector);
-    this.timerMinutesQuerySelector = document.querySelector(timerMinutesQuerySelector);
-    this.timerSecondsQuerySelector = document.querySelector(timerSecondsQuerySelector);
+    this.timerDays = document.querySelectorAll(timerDaysQuerySelector);
+    this.timerHours = document.querySelectorAll(timerHoursQuerySelector);
+    this.timerMinutes = document.querySelectorAll(timerMinutesQuerySelector);
+    this.timerSeconds = document.querySelectorAll(timerSecondsQuerySelector);
 
     this.deadline = deadline;
     this.idInterval = setInterval(() => this.updateTimer(), 1000);
   }
 
   getTimeRemaining() {
-    this.dateStop = new Date(this.deadline).getTime();
-    this.dateNow = new Date().getTime();
+    const dateStop = new Date(this.deadline).getTime();
+    const dateNow = new Date().getTime();
 
-    const timeRemaining = (this.dateStop - this.dateNow) / 1000;
+    const timeRemaining = (dateStop - dateNow) / 1000;
     const daysTillDeadline = Math.floor(timeRemaining / 60 / 60 / 24);
 
     return {
@@ -32,18 +32,40 @@ class Timer {
   updateTimer() {
     let { timeRemaining, daysTillDeadline, hoursTillDeadline, minutesTillDeadline, secondsTillDeadline } = this.getTimeRemaining();
 
-    this.timerDaysQuerySelector.textContent = this.addZeroBeforeNumber(daysTillDeadline);
-    this.timerHoursQuerySelector.textContent = this.addZeroBeforeNumber(hoursTillDeadline);
-    this.timerMinutesQuerySelector.textContent = this.addZeroBeforeNumber(minutesTillDeadline);
-    this.timerSecondsQuerySelector.textContent = this.addZeroBeforeNumber(secondsTillDeadline);
+    this.timerDays.forEach(timerItem => {
+      timerItem.textContent = this.addZeroBeforeNumber(daysTillDeadline);
+    });
+
+    this.timerHours.forEach(timerItem => {
+      timerItem.textContent = this.addZeroBeforeNumber(hoursTillDeadline);
+    });
+
+    this.timerMinutes.forEach(timerItem => {
+      timerItem.textContent = this.addZeroBeforeNumber(minutesTillDeadline);
+    });
+
+    this.timerSeconds.forEach(timerItem => {
+      timerItem.textContent = this.addZeroBeforeNumber(secondsTillDeadline);
+    });
 
     if (timeRemaining <= 0) {
       clearInterval(this.idInterval);
 
-      this.timerDaysQuerySelector.textContent = '00';
-      this.timerHoursQuerySelector.textContent = '00';
-      this.timerMinutesQuerySelector.textContent = '00';
-      this.timerSecondsQuerySelector.textContent = '00';
+      this.timerDays.forEach(timerItem => {
+        timerItem.textContent = '00';
+      });
+
+      this.timerHours.forEach(timerItem => {
+        timerItem.textContent = '00';
+      });
+
+      this.timerMinutes.forEach(timerItem => {
+        timerItem.textContent = '00';
+      });
+
+      this.timerSeconds.forEach(timerItem => {
+        timerItem.textContent = '00';
+      });
     }
   }
 
