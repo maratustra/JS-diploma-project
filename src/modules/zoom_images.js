@@ -23,6 +23,7 @@ class ZoomImages {
 
   createZoomedImageElement(imageLink) {
     this.modalWindow = document.createElement('div');
+    this.modalWindow.classList.add('modal-zoom');
 
     this.modalWindow.innerHTML = `
     <button class=${this.modalCloseBtn}>X</button>
@@ -30,32 +31,10 @@ class ZoomImages {
       <img src="${imageLink}" alt="" style="width: 100%; height: 80vh"/>
     </div>
     `;
-
-    this.modalWindow.style.cssText = `
-        display: flex;
-        position: fixed;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, 0%);
-        top: 10%;
-        z-index: 20;
-        height: 80vh;
-        background: #fff;
-        opacity: 1;
-        transition: opacity .2s ease-in-out 0s;
-    `;
   }
 
   eventListeners() {
     this.imagesToZoom.forEach(img => {
-      img.addEventListener('mouseover', (e) => {
-        e.target.style.opacity = '1';
-      });
-
-      img.addEventListener('mouseout', (e) => {
-        e.target.style.opacity = '0';
-      });
-
       img.addEventListener('click', (e) => {
         e.preventDefault();
 

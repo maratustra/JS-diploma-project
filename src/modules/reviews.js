@@ -1,5 +1,8 @@
-const reviews = () => {
+/*jshint esversion: 6 */
+`use strict`;
 
-};
+class Reviews {
 
-export default reviews;
+}
+
+export default Reviews;

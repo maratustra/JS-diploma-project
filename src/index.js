@@ -9,8 +9,7 @@ import Calculator from './modules/calculator';
 import Validation from './modules/validation_forms';
 import SendForm from './modules/send_form';
 import ZoomImages from './modules/zoom_images';
-import reviews from './modules/reviews';
-
+import Reviews from './modules/reviews';
 
 
 const modalOpts = {
@@ -110,3 +109,10 @@ const zoomOpts = {
 };
 
 const zoomCertificates = new ZoomImages(zoomOpts);
+
+
+const reviewsOpts = {
+
+};
+
+const reviews = new Reviews(reviewsOpts);
