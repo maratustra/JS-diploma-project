@@ -8,12 +8,9 @@ import Scroll from './modules/scroll';
 import Calculator from './modules/calculator';
 import Validation from './modules/validation_forms';
 import SendForm from './modules/send_form';
-import zoomModal from './modules/zoom_modal';
+import ZoomImages from './modules/zoom_images';
 import reviews from './modules/reviews';
 
-
-zoomModal();
-reviews();
 
 
 const modalOpts = {
@@ -102,3 +99,14 @@ const sendFormOpts = {
 };
 
 const sending = new SendForm(sendFormOpts);
+
+
+const zoomOpts = {
+  pictureOverlaysClass: 'document-overlay',
+  imagesClass: 'sertificate-document',
+  modalCloseBtnClass: 'lightbox-close_btn',
+  imagesGalleryBlockId: 'documents',
+  globalOverlay: 'overlay'
+};
+
+const zoomCertificates = new ZoomImages(zoomOpts);

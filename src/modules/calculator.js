@@ -10,15 +10,16 @@ class Calculator {
     this.calcTotalPrice = document.querySelector(`#${calcTotalId}`);
 
     this.calcTypeOfMateriaValue = 1;
-    this.calcTotalPriceValue = 0;
 
     this.eventListeners();
   }
 
   calculate() {
-    this.calcTotalPriceValue = this.calcSquareOfBalconyValue * 100 * this.calcTypeOfBalconyValue * this.calcTypeOfMateriaValue;
+    let calcTotalPriceValue = 0;
 
-    this.showResult(this.calcTotalPriceValue);
+    calcTotalPriceValue = this.calcSquareOfBalconyValue * 100 * this.calcTypeOfBalconyValue * this.calcTypeOfMateriaValue;
+
+    this.showResult(calcTotalPriceValue);
   }
 
   showResult(totalPrice) {
