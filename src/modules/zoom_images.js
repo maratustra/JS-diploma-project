@@ -14,7 +14,6 @@ class ZoomImages {
 
   showZoomedImage(img) {
     const imageLink = img;
-    console.log(imageLink);
 
     this.createZoomedImageElement(imageLink);
 
