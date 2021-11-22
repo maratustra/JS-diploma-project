@@ -1,21 +1,25 @@
 /*jshint esversion: 6 */
 `use strict`;
 
-//import { showNextSlide } from './slider_service';
+import SliderService from './slider_service';
 
 class Reviews {
-  constructor({ url, commentsContainerClass, commentsItemClass }) {
+  constructor({ url, commentsContainerClass, commentsItemClass, slidingInterval }) {
     this.url = url;
     this.commentsContainer = document.querySelector(`.${commentsContainerClass}`);
     this.commentsContainer.innerHTML = "";
-
+    this.slidingInterval = slidingInterval;
     this.commentsItemClass = commentsItemClass;
+    this.loader = document.querySelector('.loader-area');
 
-    this.fetchCommentsData(url)
+    this.showLoading();
+
+    setTimeout(() => this.fetchCommentsData(url)
       .then(data => {
         this.createListOfComments(data.comments);
         this.showComments();
-      });
+      })
+      .finally(() => this.hideLoading()), 2000);
   }
 
 
@@ -25,15 +29,13 @@ class Reviews {
       .catch(error => console.log('error', error));
   }
 
-  buildCommentHtml(comment) {
-    const commentItem = document.createElement('div');
-    commentItem.classList.add('review-margin-bottom', 'row', `${this.commentsItemClass}`);
+  createOddCommentHtml(comment) {
+    const image = comment.image === "" ? "review.jpg" : comment.image;
 
-    if (comment.id % 2 != 0) {
-      commentItem.innerHTML = `
+    return `
     		<div class="col-xs-3 col-sm-2">
     			<div class="review-user">
-    				<img src="images/users/${comment.image}" alt="" class="img-responsive avatar">
+    				<img src="images/users/${image}" alt="" class="img-responsive avatar">
     			</div>
     		</div>
     		<div class="col-xs-9 col-sm-9">
@@ -43,8 +45,12 @@ class Reviews {
     			</div>
     		</div>
       `;
-    } else if (comment.id % 2 === 0) {
-      commentItem.innerHTML = `
+  }
+
+  createEvenCommentHtml(comment) {
+    const image = comment.image === "" ? "review.jpg" : comment.image;
+
+    return `
 				<div class="col-xs-9 col-sm-9">
 					<div class="review-inner review-gray review-arrow review-arrow-right">
 						<p class="text-normal">${comment.author}</p>
@@ -53,31 +59,50 @@ class Reviews {
 				</div>
 				<div class="col-xs-3 col-sm-2">
 					<div class="review-user">
-						<img src="images/users/${comment.image}" alt="" class="img-responsive avatar">
+						<img src="images/users/${image}" alt="" class="img-responsive avatar">
 					</div>
 				</div>
       `;
-    }
-    return commentItem;
   }
 
   createListOfComments(rawData) {
     if (rawData == null) return;
 
-    rawData.forEach(comment => {
-      const commentHtml = this.buildCommentHtml(comment);
-      this.commentsContainer.append(commentHtml);
+    rawData.forEach((comment, index) => {
+      const commentItem = document.createElement('div');
+      commentItem.classList.add('review-margin-bottom', 'row', this.commentsItemClass);
+
+      commentItem.innerHTML = index % 2 !== 0 ? this.createOddCommentHtml(comment) : this.createEvenCommentHtml(comment);
+
+      this.commentsContainer.append(commentItem);
     });
   }
 
   showComments() {
-    // const sliderForReviewsOpts = {
-    //   sliderItemsClass: 'this.commentsItemClass',
-    //   highResolutionSlides: 3,
-    //   lowResolutionSlides: 1
-    // };
+    const sliderForReviewsOpts = {
+      sliderItemsClass: this.commentsItemClass,
+      highResolutionSlides: 3,
+      lowResolutionSlides: 1
+    };
 
-    // const sliderForReviews = new SliderService(sliderForReviewsOpts);
+    this.sliderForReviews = new SliderService(sliderForReviewsOpts);
+    this.autoSlide();
+  }
+
+  autoSlide() {
+    const slideIndefinitely = true;
+
+    setInterval(() => {
+      this.sliderForReviews.showNextSlide(slideIndefinitely);
+    }, this.slidingInterval);
+  }
+
+  showLoading() {
+    this.loader.style.display = 'block';
+  }
+
+  hideLoading() {
+    this.loader.style.display = 'none';
   }
 }
 

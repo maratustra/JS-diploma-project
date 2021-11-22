@@ -119,7 +119,8 @@ const zoomCertificates = new ZoomImages(zoomOpts);
 const reviewsOpts = {
   url: '/file/comments.json',
   commentsContainerClass: 'comments-container',
-  commentsItemClass: 'comment-item'
+  commentsItemClass: 'comment-item',
+  slidingInterval: 10000
 };
 
 const reviews = new Reviews(reviewsOpts);

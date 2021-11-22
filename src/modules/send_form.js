@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 `use strict`;
 
-import { Validation } from './validation_forms';
+import Validation from './validation_forms';
 
 class SendForm {
   constructor({ url, formsBlocksTag, calcTotalSum = [] }) {

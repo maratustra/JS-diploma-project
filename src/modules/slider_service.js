@@ -4,6 +4,8 @@
 class SliderService {
 
   constructor({ sliderItemsClass, leftArrowClass, rightArrowClass, highResolutionSlides, lowResolutionSlides }) {
+
+
     this.activeSlideClass = 'active-slide';
     this.highResolutionMode = 'high resolution mode';
     this.lowResolutionMode = 'low resolution mode';
@@ -42,8 +44,10 @@ class SliderService {
   }
 
   listenToEvents() {
-    this.leftArrow.addEventListener('click', () => this.showPrevSlide());
-    this.rightArrow.addEventListener('click', () => this.showNextSlide());
+    if (this.leftArrow && this.rightArrow) {
+      this.leftArrow.addEventListener('click', () => this.showPrevSlide());
+      this.rightArrow.addEventListener('click', () => this.showNextSlide());
+    }
     window.addEventListener('resize', () => this.checkCurrentResolution());
   }
 
@@ -80,20 +84,22 @@ class SliderService {
   }
 
   showHideArrows() {
-    switch (this.currentActiveSlide) {
-      case 0:
-        this.leftArrow.style.opacity = 0;
-        this.rightArrow.style.opacity = 1;
-        break;
+    if (this.leftArrow && this.rightArrow) {
+      switch (this.currentActiveSlide) {
+        case 0:
+          this.leftArrow.style.opacity = 0;
+          this.rightArrow.style.opacity = 1;
+          break;
 
-      case this.slidesList.length - this.maxSlidesToShow:
-        this.rightArrow.style.opacity = 0;
-        this.leftArrow.style.opacity = 1;
-        break;
+        case this.slidesList.length - this.maxSlidesToShow:
+          this.rightArrow.style.opacity = 0;
+          this.leftArrow.style.opacity = 1;
+          break;
 
-      default:
-        this.leftArrow.style.opacity = 1;
-        this.rightArrow.style.opacity = 1;
+        default:
+          this.leftArrow.style.opacity = 1;
+          this.rightArrow.style.opacity = 1;
+      }
     }
   }
 
