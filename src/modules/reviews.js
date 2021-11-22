@@ -2,6 +2,10 @@
 `use strict`;
 
 class Reviews {
+  constructor({ url }) {
+    this.url = url;
+  }
+
 
 }
 

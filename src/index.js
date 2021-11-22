@@ -112,7 +112,7 @@ const zoomCertificates = new ZoomImages(zoomOpts);
 
 
 const reviewsOpts = {
-
+  url: 'comments.json',
 };
 
 const reviews = new Reviews(reviewsOpts);
