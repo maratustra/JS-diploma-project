@@ -6,7 +6,7 @@ import { Validation } from './validation_forms';
 class SendForm {
   constructor({ url, formsBlocksTag, calcTotalSum = [] }) {
     this.url = url;
-    this.formsBlocks = document.querySelectorAll(`${formsBlocksTag}`);
+    this.formsBlocks = document.querySelectorAll(formsBlocksTag);
     this.calcTotalSum = calcTotalSum;
     this.statusBlock = document.createElement('div');
     this.errorText = 'Ошибка!';
@@ -51,6 +51,7 @@ class SendForm {
 
     this.sendData(formBody)
       .then(data => {
+        console.log(data);
         this.statusBlock.textContent = this.successText;
         form.append(this.statusBlock);
       })

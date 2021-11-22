@@ -57,6 +57,7 @@ const timerOpts = {
 
 const timer = new Timer(timerOpts);
 
+
 const scrollOpts = {
   scrollBtnClass: 'smooth-scroll',
   blockID: 'header'
@@ -77,6 +78,7 @@ if (document.body.classList.contains('balkony')) {
   const calc = new Calculator(calcOpts);
 }
 
+
 const validOpts = {
   formsBlocksTag: 'form',
   userNameInputAttr: '[name="fio"]',
@@ -88,14 +90,17 @@ const validation = new Validation(validOpts);
 
 const sendFormOpts = {
   url: 'https://jsonplaceholder.typicode.com/posts',
-  formsBlocksTag: 'form',
-  calcTotalSum: [
+  formsBlocksTag: 'form'
+};
+
+if (document.body.classList.contains('balkony')) {
+  sendFormOpts.calcTotalSum = [
     {
       type: 'input',
       id: 'calc-total',
     }
-  ],
-};
+  ];
+}
 
 const sending = new SendForm(sendFormOpts);
 
@@ -112,7 +117,9 @@ const zoomCertificates = new ZoomImages(zoomOpts);
 
 
 const reviewsOpts = {
-  url: 'comments.json',
+  url: '/file/comments.json',
+  commentsContainerClass: 'comments-container',
+  commentsItemClass: 'comment-item'
 };
 
 const reviews = new Reviews(reviewsOpts);

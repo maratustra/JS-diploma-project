@@ -57,13 +57,17 @@ class SliderService {
     this.showHideArrows();
   }
 
-  showNextSlide() {
+  showNextSlide(slideIndefinitely = false) {
     if (this.lastActiveSlide() < this.slidesList.length - 1) {
       this.slidesList[this.currentActiveSlide].classList.remove(this.activeSlideClass);
       this.currentActiveSlide++;
       this.slidesList[this.lastActiveSlide()].classList.add(this.activeSlideClass);
       this.showHideArrows();
+    } else if (slideIndefinitely) {
+      this.currentActiveSlide = 0;
+      this.showSlides();
     }
+
   }
 
   showPrevSlide() {
